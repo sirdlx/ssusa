@@ -1,5 +1,5 @@
-import {useNonce} from '@shopify/hydrogen';
-import {defer, type LoaderArgs} from '@shopify/remix-oxygen';
+import { useNonce } from '@shopify/hydrogen';
+import { defer, type LoaderArgs } from '@shopify/remix-oxygen';
 import {
   Links,
   Meta,
@@ -14,12 +14,19 @@ import {
   isRouteErrorResponse,
   type ShouldRevalidateFunction,
 } from '@remix-run/react';
-import type {CustomerAccessToken} from '@shopify/hydrogen/storefront-api-types';
-import type {HydrogenSession} from '../server';
+import type { CustomerAccessToken } from '@shopify/hydrogen/storefront-api-types';
+import type { HydrogenSession } from '../server';
 import favicon from '../public/favicon.svg';
 import resetStyles from './styles/reset.css';
-import appStyles from './styles/app.css';
-import {Layout} from '~/components/Layout';
+import mainStyle from './styles/styles.css';
+// import appStyles from './styles/app.css';
+import { Layout } from '~/components/Layout';
+// import maincss from './static/css/main.08fc2343.css'
+
+// export const links: LinksFunction = () => [
+//   { rel: 'stylesheet', href: splideCss }
+// ]
+
 
 // This is important to avoid re-fetching root queries on sub-navigations
 export const shouldRevalidate: ShouldRevalidateFunction = ({
@@ -42,8 +49,10 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
 
 export function links() {
   return [
-    {rel: 'stylesheet', href: resetStyles},
-    {rel: 'stylesheet', href: appStyles},
+
+    { rel: 'stylesheet', href: resetStyles },
+    { rel: 'stylesheet', href: mainStyle },
+    // { rel: 'stylesheet', href: appStyles },
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
@@ -52,17 +61,17 @@ export function links() {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
-    {rel: 'icon', type: 'image/svg+xml', href: favicon},
+    { rel: 'icon', type: 'image/svg+xml', href: favicon },
   ];
 }
 
-export async function loader({context}: LoaderArgs) {
-  const {storefront, session, cart} = context;
+export async function loader({ context }: LoaderArgs) {
+  const { storefront, session, cart } = context;
   const customerAccessToken = await session.get('customerAccessToken');
   const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN;
 
   // validate the customer access token is valid
-  const {isLoggedIn, headers} = await validateCustomerAccessToken(
+  const { isLoggedIn, headers } = await validateCustomerAccessToken(
     session,
     customerAccessToken,
   );
@@ -94,7 +103,7 @@ export async function loader({context}: LoaderArgs) {
       isLoggedIn,
       publicStoreDomain,
     },
-    {headers},
+    { headers },
   );
 }
 
@@ -103,14 +112,14 @@ export default function App() {
   const data = useLoaderData<typeof loader>();
 
   return (
-    <html lang="en">
+    <html lang="en" data-bs-theme="dark">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className='app-init' >
         <Layout {...data}>
           <Outlet />
         </Layout>
@@ -164,7 +173,7 @@ export function ErrorBoundary() {
   );
 }
 
-export const ErrorBoundaryV1 = ({error}: {error: Error}) => {
+export const ErrorBoundaryV1 = ({ error }: { error: Error }) => {
   // eslint-disable-next-line no-console
   console.error(error);
 
@@ -203,7 +212,7 @@ async function validateCustomerAccessToken(
   let isLoggedIn = false;
   const headers = new Headers();
   if (!customerAccessToken?.accessToken || !customerAccessToken?.expiresAt) {
-    return {isLoggedIn, headers};
+    return { isLoggedIn, headers };
   }
 
   const expiresAt = new Date(customerAccessToken.expiresAt).getTime();
@@ -217,7 +226,7 @@ async function validateCustomerAccessToken(
     isLoggedIn = true;
   }
 
-  return {isLoggedIn, headers};
+  return { isLoggedIn, headers };
 }
 
 const MENU_FRAGMENT = `#graphql
