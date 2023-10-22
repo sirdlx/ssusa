@@ -4,7 +4,7 @@
   "sideEffects": false,
   "version": "0.0.0",
   "scripts": {
-    "publish": "pnpm build && git add -A && git commit -m 'update' && git push",
+    "publish": "pnpm build && git add -A && git commit -m update && git push",
     "build": "shopify hydrogen build",
     "dev": "shopify hydrogen dev --codegen-unstable",
     "preview": "npm run build && shopify hydrogen preview",
