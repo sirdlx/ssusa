@@ -483,7 +483,7 @@ $container-padding-x: $grid-gutter-width !default;
 
 $app-header-height: rem(52px) !default;
 $app-header-bg: $white !default;
-$app-header-zindex: 1020 !default;
+$app-header-zindex: 1 !default;//1020 !default;
 $app-header-search-max-width: rem(967px) !default;
 $app-header-padding-x: $spacer * .25 !default;
 $app-header-padding-y: $spacer * .25 !default;

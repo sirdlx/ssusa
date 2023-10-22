@@ -9,6 +9,10 @@
 	display: flex;
 	transition: all .15s ease-in-out;
 
+	flex-direction: row;
+    align-content: center;
+    justify-content: left;
+
 	& .menu-toggler {
 		border: none;
 		background: none;
@@ -47,7 +51,8 @@
 		}
 
 		@else {
-			margin-right: auto;
+			// margin-right: auto;
+			margin-right: 0;
 		}
 
 		@include media-breakpoint-down(md) {
@@ -81,9 +86,9 @@
 		display: flex;
 		align-items: center;
 
-		@include media-breakpoint-down(md) {
-			display: none;
-		}
+		// @include media-breakpoint-down(md) {
+		// 	display: none;
+		// }
 
 		& .brand-logo {
 			text-decoration: none;
@@ -93,9 +98,9 @@
 			display: flex;
 			align-items: center;
 
-			@include media-breakpoint-down(md) {
-				display: none;
-			}
+			// @include media-breakpoint-down(md) {
+			// 	display: none;
+			// }
 
 			& img {
 				max-width: 100%;
@@ -134,6 +139,16 @@
 					letter-spacing: initial;
 					font-weight: $font-weight-bold;
 					font-size: $font-size-base * 1.2;
+
+					
+				}
+			}
+
+
+			& .brand-text{
+
+				@include media-breakpoint-down(md) {
+					display: none;
 				}
 			}
 		}
@@ -256,4 +271,12 @@
 			top: 0;
 		}
 	}
+}
+
+
+.header-menu-desktop{
+@include media-breakpoint-down(md) {
+	display: none;
+	
+}
 }

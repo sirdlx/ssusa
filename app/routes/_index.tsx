@@ -1,26 +1,34 @@
-import { defer, type LoaderArgs } from '@shopify/remix-oxygen';
+import { defer, type LoaderArgs } from "@shopify/remix-oxygen";
 import {
   Await,
-  useLoaderData,
   Link,
+  useLoaderData,
   type V2_MetaFunction,
-} from '@remix-run/react';
-import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, Suspense } from 'react';
-import { Image, Money } from '@shopify/hydrogen';
+} from "@remix-run/react";
+import {
+  JSXElementConstructor,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+  Suspense,
+} from "react";
+import { Image, Money } from "@shopify/hydrogen";
 import type {
   CollectionFragment,
   // RecommendedProductsQuery,
-} from 'storefrontapi.generated';
-import { Stats1 } from '~/components/stats1';
-import { MoneyV2 } from '@shopify/hydrogen-react/storefront-api-types';
-import { PartialObjectDeep } from 'type-fest/source/partial-deep';
+} from "storefrontapi.generated";
 
+
+import { SectionOnline } from "~/components/section.online";
+import { SectionBenefits } from "~/components/section.benefits";
+import Cover from "~/components/home.cover";
+// import { MoneyV2 } from '@shopify/hydrogen-react/storefront-api-types';
+// import { PartialObjectDeep } from 'type-fest/source/partial-deep';
 
 // import * as Card from "../../../src/components/card/card.jsx";
 
-
 export const meta: V2_MetaFunction = () => {
-  return [{ title: 'Hydrogen | Home' }];
+  return [{ title: "Supreme Solutions | Home" }];
 };
 
 export async function loader({ context }: LoaderArgs) {
@@ -40,181 +48,50 @@ export default function Homepage() {
     //   <RecommendedProducts products={data.recommendedProducts} />
     // </div>
     <div className="home">
-      <div className="cover">
-        <div className='bg bg-black bg-opacity-40'>
-          <div className="content p-4  mb-0">
-            <h1 className="display-3">Supreme Solutions USA</h1>
-            <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <hr className="my-4" />
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a className="btn btn-theme btn-lg" href="#/" role="button">Learn more</a>
-          </div>
+      <Cover />
 
 
+
+      <div id="finacing" className=" benefits section bg-gradient">
+
+        <SectionBenefits />
+      </div>
+
+      {
+        /* <div className='section container'>
+        <ContactUs />
+      </div> */
+      }
+
+
+      <div className="section whoweare">
+        <div className="finacing-header p-3 pb-md-4 mx-auto text-center">
+          <h1 className="display-4 fw-normal">Web Design & Development</h1>
+          <p className="fs-5 lead text-muted">
+            With a user-centric approach, we immerse ourselves in your target
+            audience's perspective, ensuring that our efforts genuinely engage
+            them. Our holistic approach covers creative design elements, color
+            schemes, messaging strategies, layout optimizations, iconography,
+            and a seamless user experience (UX). At the core of our services is
+            the commitment to enhancing your website's user interface (UI) to
+            maximize user engagement. Plus, our team of web design experts
+            specializes in integrating 'Buy Now, Pay Later' options to empower
+            your clients and boost conversions.
+          </p>
         </div>
       </div>
 
-
-
-      <div className=" benefits section bg-gradient">
-
-        <div className='container p-6 section-body'>
-          <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
-            <h1 className="display-4 fw-normal">Finacial Services</h1>
-            <p className="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
-          </div>
-
-          <div className="row row-cols-1 row-cols-md-2 mb-2 ">
-
-            <div className="col">
-              <div className="card mb-3 hvr-grow hvr-sweep-to-top hvr-back-pulse">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <div className="d-flex fw-bold small mb-3">
-                    <span className="flex-grow-1">SITE VISITORS</span>
-                  </div>
-                </div>
-                <div className="card-arrow">
-                  <div className="card-arrow-top-left"></div>
-                  <div className="card-arrow-top-right"></div>
-                  <div className="card-arrow-bottom-left"></div>
-                  <div className="card-arrow-bottom-right"></div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col">
-              <div className="card mb-3 hvr-grow hvr-sweep-to-top hvr-back-pulse">
-                <div className="card-body ">
-                  <Stats1 />
-                  <p>RBC Capital Markets estimates a BNPL option increases retail conversion rates 20% to 30%, and lifts the average ticket size between 30% and 50%</p>
-                  <div className="d-flex fw-bold small mb-3">
-                    <span className="flex-grow-1">SITE VISITORS</span>
-                  </div>
-                </div>
-                <div className="card-arrow">
-                  <div className="card-arrow-top-left"></div>
-                  <div className="card-arrow-top-right"></div>
-                  <div className="card-arrow-bottom-left"></div>
-                  <div className="card-arrow-bottom-right"></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
+      <div id='online-store' className='section '>
+        <SectionOnline />
       </div>
 
-
-      <div className='section '>
-        <div className="container section-body ">
-
-
-          <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
-            <h1 className="display-4 fw-normal">Online Store</h1>
-            <p className="fs-5 text-muted"> </p>
-          </div>
-
-
-          <div className='row row-cols-1 row-cols-md-2 mb-2'>
-
-
-            <div className="col">
-              <div className="card mb-3 hvr-grow hvr-sweep-to-top hvr-back-pulse">
-                <div className="card-body text-center">
-                  <h5 className="card-title">SEO</h5>
-                  <p className="card-text">Optimizing websites to rank higher in search engine results by incorporating relevant keywords, meta tags, and other SEO practices.</p>
-                  <div className="d-flex fw-bold small mb-3">
-                    <span className="flex-grow-1">SITE VISITORS</span>
-                  </div>
-                </div>
-                <div className="card-arrow">
-                  <div className="card-arrow-top-left"></div>
-                  <div className="card-arrow-top-right"></div>
-                  <div className="card-arrow-bottom-left"></div>
-                  <div className="card-arrow-bottom-right"></div>
-                </div>
-              </div>
-            </div>
-
-
-            <div className="col">
-              <div className="card mb-3 hvr-grow hvr-sweep-to-top hvr-back-pulse">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Analytics</h5>
-                  <p className="card-text">Setting up tools like Google Analytics to track website traffic, user behavior, and other key performance metrics.</p>
-                  <div className="d-flex fw-bold small mb-3">
-                    <span className="flex-grow-1">SITE VISITORS</span>
-                  </div>
-                </div>
-                <div className="card-arrow">
-                  <div className="card-arrow-top-left"></div>
-                  <div className="card-arrow-top-right"></div>
-                  <div className="card-arrow-bottom-left"></div>
-                  <div className="card-arrow-bottom-right"></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div className='row row-cols-1 row-cols-md-2 mb-2 '>
-
-            <div className="col">
-              <div className="card mb-3 hvr-grow hvr-sweep-to-top hvr-back-pulse">
-                <div className="card-body text-center">
-                  <h5 className="card-title">E-commerce Solutions</h5>
-                  <p className="card-text">Developing online stores with features such as product catalogs, shopping carts, secure payment gateways, and inventory management</p>
-                  <div className="d-flex fw-bold small mb-3">
-                    <span className="flex-grow-1">SITE VISITORS</span>
-                  </div>
-                </div>
-                <div className="card-arrow">
-                  <div className="card-arrow-top-left"></div>
-                  <div className="card-arrow-top-right"></div>
-                  <div className="card-arrow-bottom-left"></div>
-                  <div className="card-arrow-bottom-right"></div>
-                </div>
-              </div>
-            </div>
-
-
-            <div className="col">
-              <div className="card mb-3 hvr-grow hvr-sweep-to-top hvr-back-pulse">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Responsive Design</h5>
-                  <p className="card-text">Ensuring that websites are optimized for various devices and screen sizes, including desktops, laptops, tablets, and smartphones.</p>
-                  <div className="d-flex fw-bold small mb-3">
-                    <span className="flex-grow-1">SITE VISITORS</span>
-                  </div>
-                </div>
-                <div className="card-arrow">
-                  <div className="card-arrow-top-left"></div>
-                  <div className="card-arrow-top-right"></div>
-                  <div className="card-arrow-bottom-left"></div>
-                  <div className="card-arrow-bottom-right"></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-        </div>
-      </div>
-
-
-
-      <div className='section pricing'>
-
-        <div className='container p-6'>
-
-          <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
-            <h1 className="display-4 fw-normal">Pricing</h1>
-            <p className="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
+      <div id="packages" className="section packages py-5">
+        <div className="container p-6">
+          <div className="packages-header p-3 pb-md-4 mx-auto text-center">
+            <h1 className="display-4 fw-normal">Packages</h1>
+            <p className="fs-5 text-muted">
+              Compare the best package that fits your needs.
+            </p>
 
             <div className="card-arrow">
               <div className="card-arrow-top-left"></div>
@@ -223,8 +100,6 @@ export default function Homepage() {
           </div>
 
           <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
-
-
             <div className="col">
               <div className="card mb-4 rounded-0 shadow-sm border-primary price hvr-back-pulse">
                 <div className="card-header py-3 text-white bg-primary border-primary">
@@ -236,15 +111,22 @@ export default function Homepage() {
                   </div>
                 </div>
                 <div className="card-body">
-                  <h1 className="card-title pricing-card-title">$29<small className="text-muted fw-light">/mo</small></h1>
+                  {/* <h1 className="card-title pricing-card-title">$29<small className="text-muted fw-light">/mo</small></h1> */}
                   <ul className="list-unstyled mt-3 mb-4">
-                    <li>30 users included</li>
-                    <li>15 GB of storage</li>
+                    <li>Includes Pro Services plus...</li>
+                    <li>30 Products</li>
+                    <li>All Financing Options</li>
                     <li>Phone and email support</li>
-                    <li>Help center access</li>
+                    <li>6/mo Supreme Support</li>
                   </ul>
 
-                  <a className="w-100 btn btn-lg btn-primary" href="#/" role="button">Get Started</a>
+                  <a
+                    className="w-100 btn btn-lg btn-primary"
+                    href="contact"
+                    role="button"
+                  >
+                    Learn More
+                  </a>
                   <div className="card-arrow">
                     <div className="card-arrow-top-left"></div>
                     <div className="card-arrow-top-right"></div>
@@ -254,7 +136,6 @@ export default function Homepage() {
                 </div>
               </div>
             </div>
-
 
             <div className="col">
               <div className="card mb-4 rounded-0 shadow-sm price hvr-back-pulse">
@@ -267,14 +148,21 @@ export default function Homepage() {
                   </div>
                 </div>
                 <div className="card-body">
-                  <h1 className="card-title pricing-card-title">$15<small className="text-muted fw-light">/mo</small></h1>
+                  {/* <h1 className="card-title pricing-card-title">$15<small className="text-muted fw-light">/mo</small></h1> */}
                   <ul className="list-unstyled mt-3 mb-4">
-                    <li>20 users included</li>
-                    <li>10 GB of storage</li>
+                    <li>Includes Starter Services plus...</li>
+                    <li>15 Products</li>
+                    <li>Select Additional Financing Options</li>
                     <li>Priority email support</li>
-                    <li>Help center access</li>
+                    <li>3/mo Supreme Support</li>
                   </ul>
-                  <a className="w-100 btn btn-lg btn-primary" href="#/" role="button">Get Started</a>
+                  <a
+                    className="w-100 btn btn-lg btn-primary"
+                    href="#/"
+                    role="button"
+                  >
+                    Learn More
+                  </a>
                   <div className="card-arrow">
                     <div className="card-arrow-top-left"></div>
                     <div className="card-arrow-top-right"></div>
@@ -286,27 +174,31 @@ export default function Homepage() {
             </div>
 
             <div className="col">
-
               <div className="card mb-4 rounded-0 shadow-sm price hvr-back-pulse">
                 <div className="card-header py-3 ">
                   <h4 className="my-0 fw-normal">Starter</h4>
-
                   <div className="card-arrow">
                     <div className="card-arrow-top-left"></div>
                     <div className="card-arrow-top-right"></div>
                   </div>
-
                 </div>
 
                 <div className="card-body">
-                  <h1 className="card-title pricing-card-title">$0<small className="text-muted fw-light">/mo</small></h1>
+                  {/* <h1 className="card-title pricing-card-title">$0<small className="text-muted fw-light">/mo</small></h1> */}
                   <ul className="list-unstyled mt-3 mb-4">
-                    <li>10 users included</li>
-                    <li>2 GB of storage</li>
+                    <li>5 Products</li>
+                    <li>2 Financing Options</li>
+                    <li>Financing with Affirm, Klarna</li>
                     <li>Email support</li>
-                    <li>Help center access</li>
+                    <li>3/mo Supreme Support</li>
                   </ul>
-                  <a className="w-100 btn btn-lg btn-primary" href="#/" role="button">Get Started</a>
+                  <a
+                    className="w-100 btn btn-lg btn-primary"
+                    href="#/"
+                    role="button"
+                  >
+                    Learn More
+                  </a>
                   <div className="card-arrow">
                     <div className="card-arrow-top-left"></div>
                     <div className="card-arrow-top-right"></div>
@@ -314,21 +206,15 @@ export default function Homepage() {
                     <div className="card-arrow-bottom-right"></div>
                   </div>
                 </div>
-
               </div>
             </div>
-
-
           </div>
         </div>
 
-
-        <div className='container p-6'>
+        <div className="container p-6">
           <h2 className="display-6 text-center mb-4">Compare plans</h2>
           <div className="table-responsive">
-
             <table className="table text-center">
-
               <thead>
                 <tr>
                   <th className="text-start bg-primary ">Online Store</th>
@@ -339,7 +225,6 @@ export default function Homepage() {
               </thead>
 
               <tbody>
-
                 <tr>
                   <th scope="row" className="text-start">Products/Services</th>
                   <td>30</td>
@@ -367,7 +252,9 @@ export default function Homepage() {
                   <td>$20/m ($80 setup fee)</td>
                 </tr>
                 <tr>
-                  <th scope="row" className="text-start">Website Service Fee</th>
+                  <th scope="row" className="text-start">
+                    Website Service Fee
+                  </th>
                   <td>$45/m</td>
                   <td>$45/m</td>
                   <td>$45/m</td>
@@ -382,7 +269,9 @@ export default function Homepage() {
 
               <thead>
                 <tr>
-                  <th className="text-start bg-primary ">Features and Integration</th>
+                  <th className="text-start bg-primary ">
+                    Features and Integration
+                  </th>
                   <th>Pro Max</th>
                   <th>Pro</th>
                   <th>Starter</th>
@@ -390,45 +279,47 @@ export default function Homepage() {
               </thead>
 
               <tbody>
-
                 <tr>
-                  <th scope="row" className="text-start">Social Media Gallery</th>
+                  <th scope="row" className="text-start">
+                    Social Media Gallery
+                  </th>
                   <td>Included</td>
                   <td>$150</td>
-                  <td> - </td>
+                  <td>-</td>
                 </tr>
                 <tr>
-                  <th scope="row" className="text-start">Youtube Video Gallery</th>
+                  <th scope="row" className="text-start">
+                    Youtube Video Gallery
+                  </th>
                   <td>Included</td>
                   <td>$150</td>
-                  <td> - </td>
+                  <td>-</td>
                 </tr>
                 <tr>
                   <th scope="row" className="text-start">In-store Financing</th>
                   <td>Included</td>
                   <td>$150</td>
-                  <td> - </td></tr>
+                  <td>-</td>
+                </tr>
                 <tr>
                   <th scope="row" className="text-start">QR Code Links</th>
                   <td>Included</td>
                   <td>$150</td>
-                  <td> - </td>
+                  <td>-</td>
                 </tr>
-
               </tbody>
-
-
 
               <thead>
                 <tr>
-                  <th className="text-start bg-primary ">Professional Assets</th>
+                  <th className="text-start bg-primary ">
+                    Professional Assets
+                  </th>
                   <th>Pro Max</th>
                   <th>Pro</th>
                   <th>Starter</th>
                 </tr>
               </thead>
               <tbody>
-
                 <tr>
                   <th scope="row" className="text-start">Logos</th>
                   <td>Included</td>
@@ -436,25 +327,18 @@ export default function Homepage() {
                   <td>$200</td>
                 </tr>
                 <tr>
-                  <th scope="row" className="text-start">Photography </th>
+                  <th scope="row" className="text-start">Photography</th>
                   <td>Included</td>
                   <td>$200</td>
                   <td>$200</td>
                 </tr>
                 <tr>
-                  <th scope="row" className="text-start">Slogan </th>
+                  <th scope="row" className="text-start">Slogan</th>
                   <td>Included</td>
                   <td>$200</td>
                   <td>$50</td>
                 </tr>
-
               </tbody>
-
-
-
-
-
-
             </table>
           </div>
         </div>
@@ -528,7 +412,6 @@ function FeaturedCollection({
 //                       <a href="#" className="btn btn-primary">Go somewhere</a>
 //                     </div>
 
-
 //                     <div className="card-arrow">
 //                       <div className="card-arrow-top-left"></div>
 //                       <div className="card-arrow-top-right"></div>
@@ -536,8 +419,6 @@ function FeaturedCollection({
 //                       <div className="card-arrow-bottom-right"></div>
 //                     </div>
 //                   </div>
-
-
 
 //                   {/* <Card>
 //                     <CardHeader className="fw-bold small">CARD HEADER HERE</CardHeader>
@@ -551,8 +432,6 @@ function FeaturedCollection({
 //                       </div>
 //                     </CardBody>
 //                   </Card> */}
-
-
 
 //                 </div>
 //               ))}

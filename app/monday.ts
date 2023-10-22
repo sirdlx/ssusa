@@ -1,0 +1,2 @@
+export const MONDAY_API_TOKEN =
+  "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjI4ODE2NDgyNiwiYWFpIjoxMSwidWlkIjo0NjA0MzM0OSwiaWFkIjoiMjAyMy0xMC0xMlQwNDo0NTowOS4wNzZaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTc5NDk0NTgsInJnbiI6InVzZTEifQ.jQsuSR7vnEk3P70vcYwb6ep7F-L_hatwC6JrgL3-gvE";
